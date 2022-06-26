@@ -58,7 +58,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "https://39a2-154-120-67-153.eu.ngrok.io/api/users",
+        `${process.env.REACT_APP_URL}/api/users`,
         {
           name,
           email,

@@ -60,7 +60,7 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.post(
-        `https://39a2-154-120-67-153.eu.ngrok.io/api/chats`,
+        `${process.env.REACT_APP_URL}/api/chats`,
         { userId },
         config
       );
@@ -107,7 +107,7 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.get(
-        `https://39a2-154-120-67-153.eu.ngrok.io/api/users?search=${search}`,
+        `${process.env.REACT_APP_URL}/api/users?search=${search}`,
         config
       );
       setLoading(false);

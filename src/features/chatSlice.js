@@ -9,7 +9,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // }
 
 const initialState = {
-  selectedChat: null,
+  selectedChat: "",
   chats: [],
 };
 

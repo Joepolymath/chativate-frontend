@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 function Chatpage() {
   useEffect(() => {}, []);
   const user = useSelector((state) => state.user.user);
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   return (
     <div style={{ width: "100%" }}>
@@ -20,8 +21,10 @@ function Chatpage() {
         h="91.5vh"
         p="10px"
       >
-        {user && <Chats />}
-        {user && <ChatBox />}
+        {user && <Chats fetchAgain={fetchAgain} />}
+        {user && (
+          <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+        )}
       </Box>
     </div>
   );

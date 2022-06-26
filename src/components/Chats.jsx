@@ -8,8 +8,9 @@ import { Button } from "@chakra-ui/button";
 import { AddIcon } from "@chakra-ui/icons";
 import ChatLoading from "./miscellaneous/ChatLoading";
 import { getSender } from "../config/ChatLogics";
+import GroupChatModal from "./miscellaneous/GroupChatModal";
 
-const Chats = () => {
+const Chats = ({ fetchAgain }) => {
   const toast = useToast();
   const dispatch = useDispatch();
   const [loggedUser, setLoggedUser] = useState();
@@ -28,7 +29,7 @@ const Chats = () => {
       };
 
       const { data } = await axios.get(
-        "https://39a2-154-120-67-153.eu.ngrok.io/api/chats",
+        `${process.env.REACT_APP_URL}/api/chats`,
         config
       );
       dispatch(setChats(data.data));
@@ -45,11 +46,9 @@ const Chats = () => {
     }
   };
   useEffect(() => {
-    // setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    console.log(user);
     setLoggedUser(user);
     fetchChats();
-  }, []);
+  }, [fetchAgain]);
 
   return (
     <Box
@@ -73,15 +72,15 @@ const Chats = () => {
         alignItems="center"
       >
         My Chats
-        {/* <GroupChatModal> */}
-        <Button
-          display="flex"
-          fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-          rightIcon={<AddIcon />}
-        >
-          New Group Chat
-        </Button>
-        {/* </GroupChatModal> */}
+        <GroupChatModal>
+          <Button
+            display="flex"
+            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            rightIcon={<AddIcon />}
+          >
+            New Group Chat
+          </Button>
+        </GroupChatModal>
       </Box>
       <Box
         display="flex"
