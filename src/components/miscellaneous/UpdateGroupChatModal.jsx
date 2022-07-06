@@ -193,6 +193,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         ? dispatch(addSelectedChat(""))
         : dispatch(addSelectedChat(data.data));
       setFetchAgain(!fetchAgain);
+      fetchMessages();
       // fetchMessages();
       setLoading(false);
     } catch (error) {
